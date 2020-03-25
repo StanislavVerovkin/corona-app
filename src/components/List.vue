@@ -1,20 +1,6 @@
 <template>
     <div class="container-fluid">
-        <div class="row">
-            <input
-                    type="text"
-                    class="form-control search m-3"
-                    placeholder="Search..."
-                    v-model="searchField"
-                    v-on:keyup="filterCountries"/>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col-xl-6">
-                <app-sort></app-sort>
-            </div>
-        </div>
-
+        <app-navbar></app-navbar>
         <div class="row row-cols-1 row-cols-md-2">
             <div
                     class="col mb-4"
@@ -68,37 +54,16 @@
 </template>
 
 <script>
-  import Sort from '../components/Sort';
+  import Navbar from '../components/Navbar';
 
   export default {
-    data () {
-      return {
-        searchField: '',
-      }
-    },
-    created () {
-      this.$http.get( 'https://corona.lmao.ninja/countries' )
-        .then( res => {
-          this.$store.dispatch( 'getAllCountriesAction', res.body );
-          this.filterCountries();
-        } );
-    },
     computed: {
-      allCountries () {
-        return this.$store.getters.allCountries;
-      },
       filteredCountries () {
         return this.$store.getters.filteredCountries;
       }
     },
-    methods: {
-      filterCountries () {
-        const value = this.searchField.toLowerCase();
-        this.$store.dispatch( 'filteringCountries', value );
-      },
-    },
     components: {
-      'appSort': Sort
+      'appNavbar': Navbar
     }
   }
 </script>

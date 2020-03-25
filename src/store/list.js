@@ -3,20 +3,17 @@ export default {
     allCountries: [],
     filteredCountries: [],
     isChangeCases: true,
-    isChangeRecovered: true,
   },
   mutations: {
     setCountries ( state, payload ) {
+      state.isChangeCases = true;
       state.allCountries = payload;
+      state.filteredCountries = payload;
     },
 
     sortCountriesByCases ( state, payload ) {
       sortByParameter( state, payload, 'cases', 'isChangeCases' );
     },
-
-    // sortCountriesByRecovered ( state, payload ) {
-    //   sortByParameter( state, payload, 'recovered', 'isChangeRecovered' );
-    // },
 
     filteringCountries ( state, payload ) {
       state.filteredCountries = payload
@@ -38,23 +35,14 @@ export default {
     sortCountriesByCases ( { commit }, payload ) {
       commit( 'sortCountriesByCases', payload );
     },
-    // sortCountriesByRecovered ( { commit }, payload ) {
-    //   commit( 'sortCountriesByRecovered', payload );
-    // }
   },
   getters: {
-    allCountries ( state ) {
-      return state.allCountries;
-    },
     filteredCountries ( state ) {
       return state.filteredCountries;
     },
     isChangeCases ( state ) {
       return state.isChangeCases;
     },
-    // isChangeRecovered ( state ) {
-    //   return state.isChangeRecovered;
-    // }
   }
 }
 
