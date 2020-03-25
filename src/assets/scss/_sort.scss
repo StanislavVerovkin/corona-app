@@ -1,0 +1,14 @@
+$filter: invert(67%) sepia(60%) saturate(5771%) hue-rotate(160deg) brightness(92%) contrast(101%);
+
+.arrow-img {
+  width: 20px;
+  cursor: pointer;
+
+  &:hover {
+    filter: $filter;
+  }
+}
+
+.sort-title {
+  color: #d1d1d1;
+}
