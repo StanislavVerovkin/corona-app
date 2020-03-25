@@ -1,7 +1,7 @@
 <template>
     <img
             @click="updateData"
-            class="refresh-img ml-2"
+            class="refresh-img ml-3"
             :src="require('../assets/images/refresh.svg')"
     />
 </template>
