@@ -1,7 +1,6 @@
 <template>
     <div>
         <div>
-            <!--<span class="sort-title">Sort Cases</span>-->
             <img
                     v-if="!isChangeCases"
                     class="arrow-img"
@@ -15,21 +14,6 @@
                     :src="require('../assets/images/arrow-up.svg')"
             />
         </div>
-        <!--<div>-->
-        <!--<span class="sort-title">Sort Recovered</span>-->
-        <!--<img-->
-        <!--v-if="!isChangeRecovered"-->
-        <!--class="arrow-img ml-2"-->
-        <!--@click="sort($event)"-->
-        <!--:src="require('../assets/images/arrow-down.svg')"-->
-        <!--/>-->
-        <!--<img-->
-        <!--v-if="isChangeRecovered"-->
-        <!--class="arrow-img ml-2"-->
-        <!--@click="sort($event)"-->
-        <!--:src="require('../assets/images/arrow-up.svg')"-->
-        <!--/>-->
-        <!--</div>-->
     </div>
 </template>
 

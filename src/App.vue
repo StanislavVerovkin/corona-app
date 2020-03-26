@@ -5,12 +5,13 @@
 </template>
 
 <script>
+  import { getAllCountries } from './components/hoc/api';
+
   export default {
     created () {
-      this.$http.get( 'https://corona.lmao.ninja/countries' )
-        .then( res => {
-          this.$store.dispatch( 'getAllCountriesAction', res.body );
-        } );
+      getAllCountries().then( res => {
+        this.$store.dispatch( 'getAllCountriesAction', res.body );
+      } )
     },
   }
 </script>
