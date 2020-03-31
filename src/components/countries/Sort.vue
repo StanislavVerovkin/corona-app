@@ -5,13 +5,13 @@
                     v-if="!isChangeCases"
                     class="arrow-img"
                     @click="sort()"
-                    :src="require('../assets/images/arrow-down.svg')"
+                    :src="require('../../assets/images/arrow-down.svg')"
             />
             <img
                     v-if="isChangeCases"
                     class="arrow-img"
                     @click="sort()"
-                    :src="require('../assets/images/arrow-up.svg')"
+                    :src="require('../../assets/images/arrow-up.svg')"
             />
         </div>
     </div>
@@ -36,5 +36,5 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "../assets/scss/sort";
+    @import "../../assets/scss/sort";
 </style>

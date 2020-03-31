@@ -10,8 +10,14 @@ const routes = [
   {
     path: '/list',
     name: 'List',
-    component: () => import('../components/List')
-  }
+    component: () => import('../components/countries/List')
+  },
+  // {
+  //   path: '/country/:name',
+  //   props: true,
+  //   name: 'Charts',
+  //   component: () => import('../components/history/charts/Trend')
+  // }
 ];
 
 const router = new VueRouter(

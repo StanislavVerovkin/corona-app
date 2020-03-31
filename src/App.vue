@@ -5,13 +5,19 @@
 </template>
 
 <script>
-  import { getAllCountries } from './components/hoc/api';
+  import { getAllCountries, getHistory } from './helpers/api';
 
   export default {
     created () {
-      getAllCountries().then( res => {
-        this.$store.dispatch( 'getAllCountriesAction', res.body );
-      } )
+      getAllCountries()
+        .then( res => {
+          this.$store.dispatch( 'getAllCountriesAction', res.body );
+        } )
+        .then( () => {
+          getHistory().then( res => {
+            this.$store.dispatch( 'getHistoryAction', res.body );
+          } )
+        } );
     },
   }
 </script>
@@ -26,5 +32,6 @@
     #app {
         font-family: 'Inconsolata', monospace;
         background-color: #121212;
+        height: 100%;
     }
 </style>

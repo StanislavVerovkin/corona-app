@@ -11,3 +11,12 @@ Vue.use( VueResource );
 export const getAllCountries = () => {
   return Vue.http.get( 'https://corona.lmao.ninja/countries' );
 };
+
+/**
+ * Get history datta.
+ *
+ * @return {Promise}
+ */
+export const getHistory = () => {
+  return Vue.http.get( `https://corona.lmao.ninja/v2/historical` );
+};

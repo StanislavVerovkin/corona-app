@@ -18,16 +18,14 @@
                 </b-navbar-nav>
 
                 <b-navbar-nav class="ml-auto">
-                    <b-nav-item>
-                        <b-form-input
-                                size="sm"
-                                class="search-input"
-                                placeholder="Search..."
-                                v-model="searchField"
-                                @keyup="filterCountries"
-                        >
-                        </b-form-input>
-                    </b-nav-item>
+                    <b-form-input
+                            size="sm"
+                            class="search-input"
+                            placeholder="Search..."
+                            v-model="searchField"
+                            @keyup="filterCountries"
+                    >
+                    </b-form-input>
                 </b-navbar-nav>
             </b-collapse>
         </b-navbar>
@@ -35,8 +33,8 @@
 </template>
 
 <script>
-  import Sort from '../components/Sort';
-  import Refresh from '../components/Refresh';
+  import Sort from './Sort';
+  import Refresh from './Refresh';
 
   export default {
     data () {
@@ -47,7 +45,7 @@
     methods: {
       filterCountries () {
         const value = this.searchField.toLowerCase();
-        this.$store.dispatch( 'filteringCountries', value );
+        this.$store.dispatch( 'filterCountriesAction', value );
       }
     },
     components: {
@@ -58,5 +56,5 @@
 </script>
 
 <style lang="scss" scoped>
-    @import "../assets/scss/navbar";
+    @import "../../assets/scss/navbar";
 </style>
