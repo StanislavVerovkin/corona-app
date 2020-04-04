@@ -2,16 +2,13 @@ export default {
   state: {
     allCountries: [],
     filteredCountries: [],
-    ukraineCountry: {},
     isChangeCases: true,
-    history: []
+    historyCountries: [],
   },
   mutations: {
     setCountries ( state, payload ) {
 
-      state.allCountries = payload.filter( item => {
-        return item.country !== 'Ukraine';
-      } );
+      state.allCountries = payload;
 
       state.allCountries = payload.sort( ( a, b ) => {
         return b.cases - a.cases;
@@ -21,17 +18,28 @@ export default {
 
     setHistoryCountries ( state, payload ) {
 
-      state.history = [];
+      state.historyCountries = [];
 
       for ( let i = 0; i < state.allCountries.length; i++ ) {
-        state.history.push( {
+        state.historyCountries.push( {
             ...state.allCountries[ i ],
             ...( payload.find( ( itmInner ) => itmInner.country === state.allCountries[ i ].country ) )
           }
         );
       }
 
-      state.history = state.history.map( item => {
+      state.historyCountries = state.historyCountries.map( item => {
+
+        const labels = [];
+        // const cases = [];
+        const deaths = [];
+        const recovered = [];
+
+        serializeLabels( labels, item );
+        serializeData( recovered, item, 'recovered', 0 );
+        serializeData( deaths, item, 'deaths', 1 );
+        // serializeData( recovered, item, 'recovered', 2 );
+
         return {
           country: item.country,
           cases: item.cases,
@@ -40,19 +48,36 @@ export default {
           recovered: item.recovered,
           todayCases: item.todayCases,
           todayDeaths: item.todayDeaths,
-          timeline: {
-            cases: Object.values( item.timeline ? item.timeline.cases : {} ),
-            deaths: Object.values( item.timeline ? item.timeline.deaths : {} ),
-            recovered: Object.values( item.timeline ? item.timeline.recovered : {} ),
+          charts: {
+            dataCollection: {
+              labels,
+              datasets: [
+                {
+                  label: 'Recovered',
+                  borderColor: 'rgba(50, 115, 220, 0.5)',
+                  backgroundColor: 'rgba(50, 115, 220, 0.1)',
+                  data: recovered
+                },
+                {
+                  label: 'Deaths',
+                  borderColor: 'rgba(255, 56, 96, 0.5)',
+                  backgroundColor: 'rgba(255, 56, 96, 0.1)',
+                  data: deaths
+                },
+                // {
+                //   label: 'Recovered',
+                //   borderColor: 'rgba(75, 192, 192, 1)',
+                //   backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                //   data: recovered
+                // }
+              ]
+            },
           }
         }
       } );
 
-      state.filteredCountries = state.history;
+      state.filteredCountries = state.historyCountries;
 
-      state.ukraineCountry = state.history.find( item => {
-        return item.country === 'Ukraine';
-      } );
     },
 
     sortCountriesByCases ( state, payload ) {
@@ -61,26 +86,26 @@ export default {
 
     setFilteredCountries ( state, payload ) {
       state.filteredCountries = payload
-        ? state.history.filter( item => {
-            return item.country.toLowerCase().includes( payload ) && item.country !== 'Ukraine';
+        ? state.historyCountries.filter( item => {
+            return item.country.toLowerCase().includes( payload );
           }
         )
         :
-        state.history;
+        state.historyCountries;
     },
 
   },
   actions: {
-    getAllCountriesAction ( { commit }, payload ) {
+    allCountriesAction ( { commit }, payload ) {
       commit( 'setCountries', payload );
     },
-    getHistoryAction ( { commit }, payload ) {
+    historyCountriesAction ( { commit }, payload ) {
       commit( 'setHistoryCountries', payload );
     },
     filterCountriesAction ( { commit }, payload ) {
       commit( 'setFilteredCountries', payload );
     },
-    sortCountriesByCases ( { commit }, payload ) {
+    sortCountriesByCasesAction ( { commit }, payload ) {
       commit( 'sortCountriesByCases', payload );
     },
   },
@@ -90,10 +115,7 @@ export default {
     },
     isChangeCases ( state ) {
       return state.isChangeCases;
-    },
-    ukraineCountry ( state ) {
-      return state.ukraineCountry;
-    },
+    }
   }
 }
 
@@ -103,6 +125,30 @@ export const sortByParameter = ( state, payload, sortType, stateType ) => {
 
   payload.sort( ( a, b ) => {
       return state[ stateType ] ? b[ sortType ] - a[ sortType ] : a[ sortType ] - b[ sortType ];
+    }
+  );
+};
+
+export const serializeData = ( state, payload, dataType ) => {
+
+  const obj = Object.values( payload.timeline ? payload.timeline[ dataType ] : {} );
+
+  obj.forEach( ( item, idx ) => {
+      if ( idx >= obj.length - 1 - 7 && idx <= obj.length - 1 ) {
+        state.push( item );
+      }
+    }
+  )
+};
+
+export const serializeLabels = ( state, payload ) => {
+
+  const obj = Object.keys( payload.timeline ? payload.timeline.cases : {} );
+
+  obj.forEach( ( item, idx ) => {
+      if ( idx >= obj.length - 1 - 7 && idx <= obj.length - 1 ) {
+        state.push( item );
+      }
     }
   );
 };

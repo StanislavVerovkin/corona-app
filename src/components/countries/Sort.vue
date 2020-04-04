@@ -29,7 +29,7 @@
     },
     methods: {
       sort () {
-        this.$store.dispatch( 'sortCountriesByCases', this.filteredCountries );
+        this.$store.dispatch( 'sortCountriesByCasesAction', this.filteredCountries );
       }
     }
   }

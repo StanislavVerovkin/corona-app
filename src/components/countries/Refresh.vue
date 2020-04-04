@@ -13,7 +13,7 @@
     methods: {
       updateData () {
         getHistory().then( res => {
-          this.$store.dispatch( 'getHistoryAction', res.body );
+          this.$store.dispatch( 'historyCountriesAction', res.body );
         } )
       }
     }

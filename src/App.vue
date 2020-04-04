@@ -11,11 +11,11 @@
     created () {
       getAllCountries()
         .then( res => {
-          this.$store.dispatch( 'getAllCountriesAction', res.body );
+          this.$store.dispatch( 'allCountriesAction', res.body );
         } )
         .then( () => {
           getHistory().then( res => {
-            this.$store.dispatch( 'getHistoryAction', res.body );
+            this.$store.dispatch( 'historyCountriesAction', res.body );
           } )
         } );
     },
