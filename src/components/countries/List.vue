@@ -69,28 +69,6 @@
   import LineChart from '../chart/Chart';
 
   export default {
-    data () {
-      return {
-        datacollection: {
-          labels: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ],
-          datasets: [
-            {
-              label: 'Cases',
-              borderColor: 'rgba(50, 115, 220, 0.5)',
-              backgroundColor: 'rgba(50, 115, 220, 0.1)',
-              data: [ 23, 45, 645, 4, 666, 33, 44, 33, 2, 3 ]
-            },
-            {
-              label: 'Deaths',
-              borderColor: 'rgba(255, 56, 96, 0.5)',
-              backgroundColor: 'rgba(255, 56, 96, 0.1)',
-              data: [ 21, 33, 445, 433, 32, 11, 33, 44, 5, 6 ]
-            }
-          ]
-        },
-
-      }
-    },
     computed: {
       filteredCountries () {
         return this.$store.getters.filteredCountries;
