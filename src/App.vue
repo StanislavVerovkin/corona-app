@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import { getAllCountries, getHistory } from './helpers/api';
+  import { getAllCountries } from './helpers/api';
 
   export default {
     created () {
@@ -13,11 +13,6 @@
         .then( res => {
           this.$store.dispatch( 'allCountriesAction', res.body );
         } )
-        .then( () => {
-          getHistory().then( res => {
-            this.$store.dispatch( 'historyCountriesAction', res.body );
-          } )
-        } );
     },
   }
 </script>

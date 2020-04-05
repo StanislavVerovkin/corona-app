@@ -13,10 +13,19 @@ export const getAllCountries = () => {
 };
 
 /**
- * Get history datta.
+ * Get history data.
  *
  * @return {Promise}
  */
 export const getHistory = () => {
   return Vue.http.get( `https://corona.lmao.ninja/v2/historical` );
+};
+
+/**
+ * Get history data by country.
+ *
+ * @return {Promise}
+ */
+export const getHistoryByCountry = ( countryName ) => {
+  return Vue.http.get( `https://corona.lmao.ninja/v2/historical/${countryName}` );
 };

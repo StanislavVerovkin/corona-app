@@ -53,8 +53,13 @@
                             </h6>
                             <h6>Currently sick:<b>{{ country.active }}</b></h6>
                             <hr/>
-                            <div class="small">
-                                <app-line-chart :chart-data="country.charts.dataCollection"></app-line-chart>
+                            <div class="d-flex justify-content-center">
+                                <router-link
+                                        :to="`/country/${country.country}`"
+                                        class="text-decoration-none show-btn"
+                                >
+                                    SHOW CHART
+                                </router-link>
                             </div>
                         </div>
                     </div>
@@ -66,7 +71,6 @@
 
 <script>
   import Navbar from './Navbar';
-  import LineChart from '../chart/Chart';
 
   export default {
     computed: {
@@ -76,7 +80,6 @@
     },
     components: {
       'appNavbar': Navbar,
-      'appLineChart': LineChart
     }
   }
 </script>

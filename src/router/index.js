@@ -12,12 +12,17 @@ const routes = [
     name: 'List',
     component: () => import('../components/countries/List')
   },
-  // {
-  //   path: '/country/:name',
-  //   props: true,
-  //   name: 'Charts',
-  //   component: () => import('../components/history/charts/Trend')
-  // }
+  {
+    path: '/country/:name',
+    props: true,
+    name: 'Country',
+    component: () => import('../components/country/Country')
+  },
+  {
+    path: '/map',
+    name: 'Map',
+    component: () => import('../components/map/Map')
+  }
 ];
 
 const router = new VueRouter(

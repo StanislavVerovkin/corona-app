@@ -29,10 +29,6 @@
   }
 }
 
-.flag-img {
-  width: 200px;
-}
-
 .card-body {
   background-color: #191a1e;
 
@@ -44,4 +40,9 @@
       padding: 0 10px 0 10px;
     }
   }
+}
+
+.show-btn {
+  border: 1px solid;
+  padding: 10px 20px 10px 20px;
 }
