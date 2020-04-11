@@ -5,15 +5,21 @@ export default {
         labels: [],
         datasets: [
           {
+            label: 'Cases',
+            borderColor: 'rgba(50, 115, 220, 0.5)',
+            backgroundColor: 'rgba(235, 244, 245, 1)',
+            data: []
+          },
+          {
             label: 'Recovered',
             borderColor: 'rgba(50, 115, 220, 0.5)',
-            backgroundColor: 'rgba(50, 115, 220, 0.1)',
+            backgroundColor: 'rgba(30, 107, 53, 1)',
             data: []
           },
           {
             label: 'Deaths',
             borderColor: 'rgba(255, 56, 96, 0.5)',
-            backgroundColor: 'rgba(255, 56, 96, 0.1)',
+            backgroundColor: 'rgba(209, 0, 73, 1)',
             data: []
           },
         ]
@@ -23,8 +29,9 @@ export default {
   mutations: {
     setHistoryByCountry ( state, payload ) {
       serializeLabels( state, payload );
-      serializeData( state, payload, 0, 'recovered' );
-      serializeData( state, payload, 1, 'deaths' );
+      serializeData( state, payload, 0, 'cases' );
+      serializeData( state, payload, 1, 'recovered' );
+      serializeData( state, payload, 2, 'deaths' );
     }
   },
   actions: {

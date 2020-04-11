@@ -8,6 +8,12 @@
                 </b-navbar-brand>
                 <app-sort></app-sort>
                 <app-refresh></app-refresh>
+                <router-link :to="`/map`">
+                    <img
+                            class="globe"
+                            :src="require('../../assets/images/globe.svg')"
+                    />
+                </router-link>
             </div>
 
             <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -22,8 +28,7 @@
                             size="sm"
                             class="search-input"
                             placeholder="Search..."
-                            v-model="searchField"
-                            @keyup="filterCountries"
+                            @keyup="filterCountries($event)"
                     >
                     </b-form-input>
                 </b-navbar-nav>
@@ -37,14 +42,9 @@
   import Refresh from './Refresh';
 
   export default {
-    data () {
-      return {
-        searchField: '',
-      }
-    },
     methods: {
-      filterCountries () {
-        const value = this.searchField.toLowerCase();
+      filterCountries ( event ) {
+        const value = event.target.value.toLowerCase();
         this.$store.dispatch( 'filterCountriesAction', value );
       }
     },

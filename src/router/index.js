@@ -21,7 +21,7 @@ const routes = [
   {
     path: '/map',
     name: 'Map',
-    component: () => import('../components/map/Map')
+    component: () => import('../components/map/MapContainer')
   }
 ];
 

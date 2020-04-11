@@ -5,16 +5,7 @@
 </template>
 
 <script>
-  import { getAllCountries } from './helpers/api';
-
-  export default {
-    created () {
-      getAllCountries()
-        .then( res => {
-          this.$store.dispatch( 'allCountriesAction', res.body );
-        } )
-    },
-  }
+  export default {}
 </script>
 
 <style>

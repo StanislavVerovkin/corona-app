@@ -1,6 +1,7 @@
 export default {
   state: {
     allCountries: [],
+    worldMapCountries: [],
     filteredCountries: [],
     isChangeCases: true,
   },
@@ -17,11 +18,8 @@ export default {
 
     },
 
-    sortCountriesByCases ( state, payload ) {
-      sortByParameter( state, payload, 'cases', 'isChangeCases' );
-    },
-
     setFilteredCountries ( state, payload ) {
+      state.searchField = payload;
       state.filteredCountries = payload
         ? state.allCountries.filter( item => {
             return item.country.toLowerCase().includes( payload );
@@ -31,10 +29,22 @@ export default {
         state.allCountries;
     },
 
+    serializeDataForWorldMap ( state, payload ) {
+      state.worldMapCountries = payload.reduce( ( acc, cur ) => {
+        acc[ cur.countryInfo.iso2 ] = cur.cases;
+        return acc;
+      }, {} );
+    },
+
+    sortCountriesByCases ( state, payload ) {
+      sortByParameter( state, payload, 'cases', 'isChangeCases' );
+    },
+
   },
   actions: {
     allCountriesAction ( { commit }, payload ) {
       commit( 'setCountries', payload );
+      commit( 'serializeDataForWorldMap', payload );
     },
     filterCountriesAction ( { commit }, payload ) {
       commit( 'setFilteredCountries', payload );
@@ -47,9 +57,12 @@ export default {
     filteredCountries ( state ) {
       return state.filteredCountries;
     },
+    worldMapCountries ( state ) {
+      return state.worldMapCountries;
+    },
     isChangeCases ( state ) {
       return state.isChangeCases;
-    }
+    },
   }
 }
 

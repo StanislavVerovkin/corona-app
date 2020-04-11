@@ -7,17 +7,17 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
-    "@amcharts/amcharts4": "^4.9.12",
-    "@amcharts/amcharts4-geodata": "^4.1.14",
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.7.0",
     "chart.js": "^2.9.3",
+    "chroma-js": "^2.1.0",
     "core-js": "^3.6.4",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.0",
     "vue-number-animation": "^1.0.5",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.1.5",
+    "vue-world-map": "^0.1.1",
     "vuetrend": "^0.3.4",
     "vuex": "^3.1.2"
   },

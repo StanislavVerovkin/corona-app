@@ -52,6 +52,7 @@
                                 </span>
                             </h6>
                             <h6>Currently sick:<b>{{ country.active }}</b></h6>
+                            <h6>Tests:<b>{{ country.tests }}</b></h6>
                             <hr/>
                             <div class="d-flex justify-content-center">
                                 <router-link
@@ -71,8 +72,15 @@
 
 <script>
   import Navbar from './Navbar';
+  import { getAllCountries } from '../../helpers/api';
 
   export default {
+    created () {
+      getAllCountries()
+        .then( res => {
+          this.$store.dispatch( 'allCountriesAction', res.body );
+        } )
+    },
     computed: {
       filteredCountries () {
         return this.$store.getters.filteredCountries;
