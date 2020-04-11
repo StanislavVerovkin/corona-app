@@ -13,6 +13,7 @@
     "chroma-js": "^2.1.0",
     "core-js": "^3.6.4",
     "vue": "^2.6.11",
+    "vue-analytics": "^5.22.1",
     "vue-chartjs": "^3.5.0",
     "vue-number-animation": "^1.0.5",
     "vue-resource": "^1.5.1",

@@ -76,6 +76,9 @@
 
   export default {
     created () {
+      if ( window.location.href === 'https://corona-app-97beb.firebaseapp.com/#/list' ) {
+        window.location.href = 'https://coronaapp.online/#/list';
+      }
       getAllCountries()
         .then( res => {
           this.$store.dispatch( 'allCountriesAction', res.body );

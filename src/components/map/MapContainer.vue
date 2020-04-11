@@ -56,6 +56,9 @@
       },
     },
     mounted () {
+      if ( window.location.href === `https://corona-app-97beb.firebaseapp.com/#/map` ) {
+        window.location.href = `https://coronaapp.online/#/map`;
+      }
       getAllCountries()
         .then( res => {
           this.$store.dispatch( 'allCountriesAction', res.body );
